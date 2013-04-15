@@ -1,3 +1,4 @@
+![A picture](http://www.canakit.com/media/catalog/product/cache/2/image/300x/5e06319eda06f020e43594a9c230972d/R/1/R1104.jpg)
 ### What is canakit-uk1104-api?
 This is canakit-uk1104-api, a RESTful API to control the functions on the Canakit UK1104 (1104) Data Acquisition Module.
 This allows you to deploy a public facing API with the desired relay positions, and the microcontroller can poll for updates
