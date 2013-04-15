@@ -31,3 +31,7 @@ The folder relaypoller includes the software distribution that connects to the s
 This software polls a restful URL with your projects name and will call the API to change the relays.
 ##### Relay Server
 This is a Flask based web server which stores the events.
+
+##### Legal
+This software and code is not written nor endorsed by Canakit Corporation, but by an individual author.
+The Canakit Device, Canakit Name, Trademarks, Circuit Design and Implementation all © 2008 Cana Kit Corporation. All Rights Reserved.
