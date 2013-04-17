@@ -23,14 +23,74 @@ The included class will support object based interaction with these serial comma
 	RELS.ON
 	RELS.OFF
 
-### This Software
-This software is broken into two parts, a Relay Poller Daemon and a Relay Server
-##### Relay Status Poller Daemon
-The folder relaypoller includes the software distribution that connects to the serial port. relaypoller.conf contains settings you may need to change.
+### Software Layout
+There is two components to this system. A client that the Canakit runs (a deamonized process polling the board) and a seperate rest API server component, which can run over the network or on localhost. The API can be updated by remote clients by using the examples SEE EXAMPLE section.
 
-This software polls a restful URL with your projects name and will call the API to change the relays.
-##### Relay Server
-This is a Flask based web server which stores the events.
+#### Relay Poller
+Found inside `relaypoller` tree. Acts as a restful client to the server. Runs as a deamon on the system connected to Canakit.
+See README.md inside tree for instructions.
+#### Relay Server
+Found inside `relayserver` tree. Restful API service, that can run on the same system as the poller, or on a remote server of your choice. Gotta love networks. See README.md inside tree `relayserver` for setup instructions.
+
+##### Examples
+## Build new project
+  curl -s -XGET localhost:5000/entity/projectboard1/ | python -m json.tool
+	{
+		"canakit1104": {
+		    "light_system_project_name": "projectboard1", 
+		    "relay": {
+		        "1": {
+		            "lastchange": "2013-04-16 22:41:52.492750", 
+		            "state": 0
+		        }, 
+		        "2": {
+		            "lastchange": "2013-04-16 22:41:52.492750", 
+		            "state": 0
+		        }, 
+		        "3": {
+		            "lastchange": "2013-04-16 22:41:52.492750", 
+		            "state": 0
+		        }, 
+		        "4": {
+		            "lastchange": "2013-04-16 22:41:52.492750", 
+		            "state": 0
+		        }
+		    }
+		}, 
+		"x-i-made-this": "jonkelley@rackspace.com"
+	}
+## Build new project
+  curl -s -XGET localhost:5000/entity/projectboard1/ | python -m json.tool
+	{
+		"canakit1104": {
+		    "light_system_project_name": "projectboard1", 
+		    "relay": {
+		        "1": {
+		            "lastchange": "2013-04-16 22:41:52.492750", 
+		            "state": 0
+		        }, 
+		        "2": {
+		            "lastchange": "2013-04-16 22:41:52.492750", 
+		            "state": 0
+		        }, 
+		        "3": {
+		            "lastchange": "2013-04-16 22:41:52.492750", 
+		            "state": 0
+		        }, 
+		        "4": {
+		            "lastchange": "2013-04-16 22:41:52.492750", 
+		            "state": 0
+		        }
+		    }
+		}, 
+		"x-i-made-this": "jonkelley@rackspace.com"
+	}
+
+## Post relay number 1 to value 1
+`curl -s -XPOST localhost:5000/entity/projectboard1/set/1/1`
+## Post all relays to value 0
+`curl -s -XPOST localhost:5000/entity/projectboard1/set/*/0`
+
 
 ##### Legal
 This software and code is not written nor endorsed by Canakit Corporation, but by an individual author.
